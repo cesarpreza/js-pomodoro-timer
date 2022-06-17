@@ -15,8 +15,8 @@ function handleCLick() {
                         startTime();
                         console.log('start was clicked');
                         break;
-                    case 'STOP':
-                        console.log('stop was clicked');
+                    case 'PAUSE':
+                        stopTime();
                         break;
                     case 'RESET':
                         resetTime();
@@ -42,15 +42,22 @@ function startTime() {
 }
 
 function stopTime() {
-    //code to stop the counter as its running. "Pause"
+    document.querySelector('.btn.pause').addEventListener('click', function () {
+        clearInterval(start);
+    console.log('pause was clicked')
+    })
 }
 
 
 function resetTime() { 
     document.querySelector('.btn.reset').addEventListener('click', function () {
-        clearInterval(start);
-        startingTime = 5;
-        document.querySelector('.counter').innerHTML = startingTime;
+        if (startingTime >= 0) {
+            startingTime = 5;
+            document.querySelector('.counter').innerHTML = startingTime;
+            console.log('reset was clicked');
+            clearInterval(start);
+        }
+        
     })
 }
 
