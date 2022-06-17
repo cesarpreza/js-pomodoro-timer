@@ -1,5 +1,6 @@
 let buttonName = document.querySelectorAll('.btn').length;
 let startingTime = 5
+let start;
 console.log(buttonName);
 
 document.querySelector('.counter').innerHTML = startingTime;
@@ -18,7 +19,7 @@ function handleCLick() {
                         console.log('stop was clicked');
                         break;
                     case 'RESET':
-                        console.log('reset was clicked');
+                        resetTime();
                         break;
                     default:
                         console.log('idk what was clicked');
@@ -29,10 +30,9 @@ function handleCLick() {
 }
 
 function startTime() {
-    let start = setInterval(function () {
+    start = setInterval(function () {
         if (startingTime <= 1) {
             document.querySelector('.counter').innerHTML = 'Done!'
-            
             clearInterval(start);
         } else {
             document.querySelector('.counter').innerHTML = startingTime - 1;
@@ -46,10 +46,12 @@ function stopTime() {
 }
 
 
-function resetTime() {
-    //resets the counter to 5 seconds after the reset button is clicked. 
-
+function resetTime() { 
+    document.querySelector('.btn.reset').addEventListener('click', function () {
+        clearInterval(start);
+        startingTime = 5;
+        document.querySelector('.counter').innerHTML = startingTime;
+    })
 }
-
 
 handleCLick();
