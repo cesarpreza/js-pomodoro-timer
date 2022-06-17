@@ -1,7 +1,8 @@
 let buttonName = document.querySelectorAll('.btn').length;
-let startingTime = 25
+let startingTime = 5
 console.log(buttonName);
 
+document.querySelector('.counter').innerHTML = startingTime;
 
 function handleCLick() {
     for (i = 0; i <= buttonName; i++) {
@@ -10,6 +11,7 @@ function handleCLick() {
                 let buttonClicked = this.innerHTML;
                 switch (buttonClicked) {
                     case 'START':
+                        startTime();
                         console.log('start was clicked');
                         break;
                     case 'STOP':
@@ -26,10 +28,28 @@ function handleCLick() {
     }
 }
 
-function startTimer() {
-    document.querySelector('.counter').innerHTML = startingTime;
-    
+function startTime() {
+    let start = setInterval(function () {
+        if (startingTime <= 1) {
+            document.querySelector('.counter').innerHTML = 'Done!'
+            
+            clearInterval(start);
+        } else {
+            document.querySelector('.counter').innerHTML = startingTime - 1;
+        }
+        startingTime--;
+    }, 1000)
 }
 
+function stopTime() {
+    //code to stop the counter as its running. "Pause"
+}
+
+
+function resetTime() {
+    //resets the counter to 5 seconds after the reset button is clicked. 
+
+}
+
+
 handleCLick();
-startTimer();
